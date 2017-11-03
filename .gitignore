@@ -1,0 +1,13 @@
+**/venv/
+kafka-flink-101/target/
+kafka-flink-101/pom.xml.tag
+kafka-flink-101/pom.xml.releaseBackup
+kafka-flink-101/pom.xml.versionsBackup
+kafka-flink-101/pom.xml.next
+kafka-flink-101/release.properties
+kafka-flink-101/dependency-reduced-pom.xml
+kafka-flink-101/buildNumber.properties
+kafka-flink-101/.mvn/timing.properties
+kafka-flink-101/.idea/*
+kafka-flink-101/*.iml
+
