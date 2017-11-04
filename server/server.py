@@ -6,7 +6,7 @@ es = Elasticsearch()
 @app.route("/")
 def hello():
     
-    res=es.get(index="temperature",doc_type="doc",id=1)
+    res=es.search(index="temperature",size=100, body={"query": {"match_all": {}}})
     return jsonify(res)
 
 

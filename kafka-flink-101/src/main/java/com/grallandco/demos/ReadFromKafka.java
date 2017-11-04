@@ -30,11 +30,11 @@ import java.util.Properties;
 public class ReadFromKafka {
 
 
+static int i=0;
   public static void main(String[] args) throws Exception {
-    // create execution environment
+    
+// create execution environment
     StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-    final Curl c=new Curl();
-    c.sendToES("deneme");
     Properties properties = new Properties();
     properties.setProperty("bootstrap.servers", "localhost:9092");
     properties.setProperty("group.id", "flink_consumer");
@@ -46,14 +46,18 @@ public class ReadFromKafka {
       private static final long serialVersionUID = -6867736771747690202L;
       @Override
       public String map(String value) throws Exception {
+	int temperature=Integer.parseInt(value);
+	String warning= temperature > 50 ? "yes":"no";
 	
-        return "Stream Value: " + value;      
+	String jsonData="{\"temperature\":\""+value+"\",\"overheat\":\""+warning+"\"}";
+        return jsonData;      
 }
     }).addSink(new SinkFunction<String>(){
 	@Override
 	public void invoke(String mes) throws Exception{
-	System.out.println("!!!"+mes);
-	new Curl().sendToES(mes);
+	System.out.println("Stream value ==> "+mes);
+	new Curl("http://localhost:9200/temperature/doc/"+i+"?pretty").sendToES(mes);
+i++;
 }
 
 });

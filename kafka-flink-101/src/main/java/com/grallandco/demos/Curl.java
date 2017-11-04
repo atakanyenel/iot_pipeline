@@ -11,13 +11,22 @@ import java.io.OutputStreamWriter;
 
 public class Curl {
 
+	private String url;
+  Curl(String url)
+  {
+	this.url=url;
+	System.out.println(url);
+  }
+
+
+
   public void sendToES(String message) {
 
     try {
 
-    String url = "http://localhost:9200/temperature/doc/1?pretty";
+    //String url = "http://localhost:9200/temperature/doc/?pretty";
 
-    URL obj = new URL(url);
+    URL obj = new URL(this.url);
     HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 
     conn.setRequestProperty("Content-Type", "application/json");
@@ -25,10 +34,9 @@ public class Curl {
 
     conn.setRequestMethod("PUT");
 
-    String data =  "{\"temperature\":\""+message+"\"}";
     OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-    out.write(data);
-    System.out.println("sent!!");
+    out.write(message);
+    System.out.println("sent to Elasticsearch!!");
     out.close();
 
     new InputStreamReader(conn.getInputStream());   
