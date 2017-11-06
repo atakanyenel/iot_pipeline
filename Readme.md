@@ -11,6 +11,15 @@ Server is a python Flask server with a python Elasticsearch client. It has one e
 ### kafka-flink-101
 The main Apache pipeline. It uses the Flink-Kafka connector. I couldn't connect Elasticsearch through Flink's connector so I wrote a CURL sender class to send the data to elasticsearch. To run it, you should have maven installed. To install maven, run `apt-get install maven` for linux systems. Inside the directory ,run `mvn clean package` to download dependencies and build the project. Then run `mvn exec:java -Dexec.mainClass=com.grallandco.demos.ReadFromKafka`. This project is cloned from [this Github repository](https://github.com/tgrall/kafka-flink-101). After that the ElasticSearch connection is added.
 
+## API Endpoints
+
+- `http://localhost:5000/`  
+    will return every entry in `temperature` index.
+
+- `http://localhost:5000/api/v1/{indexName}/{id}`  
+    will return the document with the given `id` from the index `indexName`.
+
+
 #### Kafka Commands
     /opt/Kafka/kafka_2.10-0.10.0.1/bin/kafka-topics.sh --list --zookeeper localhost:2181
 
