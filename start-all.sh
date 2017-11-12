@@ -12,6 +12,6 @@ mvn -f ./kafka-flink-101/pom.xml exec:java -Dexec.mainClass=com.grallandco.demos
 
 
 #python server
-/root/IOT/server/venv/bin/python /root/IOT/server/server.py &
+server/venv/bin/python server/server.py &
 
 wait
