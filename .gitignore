@@ -10,4 +10,4 @@ kafka-flink-101/buildNumber.properties
 kafka-flink-101/.mvn/timing.properties
 kafka-flink-101/.idea/*
 kafka-flink-101/*.iml
-
+*.csv
